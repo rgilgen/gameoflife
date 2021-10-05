@@ -1,13 +1,19 @@
-public class GameOfLife {
+import java.util.Arrays;
+import java.util.stream.Stream;
 
+public class GameOfLife {
 
     private Population population = new Population();
 
-    public void setSeed(boolean[][] cells) {
+    public void setSeed(int[][] cells) {
         population.populate(cells);
     }
 
-    public boolean[][] getCurrentGeneration() {
+    public int[][] getCurrentGeneration() {
         return population.getCells();
+    }
+
+    public void tick() {
+       population.calculateNextGeneration();
     }
 }

@@ -1,12 +1,20 @@
 class Population {
 
-    private boolean[][] cells;
+    private int[][] cells;
 
-    public void populate(boolean[][] cells) {
+    public void populate(int[][] cells) {
         this.cells = cells;
     }
 
-    public boolean[][] getCells() {
+    public int[][] getCells() {
         return cells;
+    }
+
+    public void calculateNextGeneration() {
+        for(int i=0; i < cells.length; i++){
+            for(int j=0;j<cells[i].length;j++){
+                cells[i][j] = 0;
+            }
+        }
     }
 }

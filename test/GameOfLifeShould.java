@@ -17,17 +17,47 @@ X X X
 X X X
 X X X
 
+---
+x o
+o o
+- tick
+o o
+o o
+---
+x x
+x o
+- tick
+x x
+x x
+
 
  */
 class GameOfLifeShould {
 
     @Test
-    void returnDeadGenerationWithDeadSeedAndNoTick(){
+    void returnDeadGenerationWithOneSeedAndOneTick(){
         GameOfLife gameOfLife = new GameOfLife();
-        boolean[][] cells = {{false, false, false},{false, false, false},{false, false, false}};
+        int[][] cells = {{1, 0},{0, 0}};
+        int[][] expectedCells = {{0, 0},{0, 0}};
         gameOfLife.setSeed(cells);
 
-        boolean[][] actual = gameOfLife.getCurrentGeneration();
+        gameOfLife.tick();
+        int[][] actual = gameOfLife.getCurrentGeneration();
+
+        assertEquals(expectedCells[0][0], actual[0][0]);
+        assertEquals(expectedCells[0][1], actual[0][1]);
+        assertEquals(expectedCells[1][0], actual[1][0]);
+        assertEquals(expectedCells[1][1], actual[1][1]);
+
+    }
+
+    @Test
+    void returnDeadGenerationWithDeadSeedAndNoTick(){
+        GameOfLife gameOfLife = new GameOfLife();
+        int[][] cells = {{0, 0, 0},{0, 0, 0},{0, 0, 0}};
+        gameOfLife.setSeed(cells);
+
+        int[][] actual = gameOfLife.getCurrentGeneration();
 
         assertEquals(cells[0][0], actual[0][0]);
         assertEquals(cells[0][1], actual[0][1]);
@@ -43,10 +73,10 @@ class GameOfLifeShould {
     @Test
     void returnDeadGenerationWithOneLivingCellInSeedAndNoTick(){
         GameOfLife gameOfLife = new GameOfLife();
-        boolean[][] cells = {{false, false, false},{false, true, false},{false, false, false}};
+        int[][] cells = {{0, 0, 0},{0, 1, 0},{0, 0, 0}};
         gameOfLife.setSeed(cells);
 
-        boolean[][] actual = gameOfLife.getCurrentGeneration();
+        int[][] actual = gameOfLife.getCurrentGeneration();
 
         assertEquals(cells[0][0], actual[0][0]);
         assertEquals(cells[0][1], actual[0][1]);
