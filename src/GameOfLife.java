@@ -1,12 +1,13 @@
 public class GameOfLife {
 
-    private boolean[][] cells;
+
+    private Population population = new Population();
 
     public void setSeed(boolean[][] cells) {
-        this.cells = cells;
+        population.populate(cells);
     }
 
     public boolean[][] getCurrentGeneration() {
-        return cells;
+        return population.getCells();
     }
 }
